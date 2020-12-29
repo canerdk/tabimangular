@@ -1,0 +1,33 @@
+<div class="logo">
+    <a href="" class="simple-text">
+        <div class="logo-img mb-4">
+            <img src="/assets/img/logo_red.png"/>
+        </div>
+    </a>
+</div>
+<div class="sidebar-wrapper">
+
+    <mat-accordion class="example-headers-align" multi>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{user}}
+                </mat-panel-title>
+                <mat-panel-description>
+                    <mat-icon>account_circle</mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <button mat-raised-button color="warn" (click)="exit()">Çıkış Yap <mat-icon>exit_to_app</mat-icon> </button>
+        </mat-expansion-panel>
+
+    </mat-accordion>
+
+    <ul class="nav">
+        <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
+            <a class="nav-link" [routerLink]="[menuItem.path]">
+                <i class="material-icons">{{menuItem.icon}}</i>
+                <p>{{menuItem.title}}</p>
+            </a>
+        </li>
+    </ul>
+</div>

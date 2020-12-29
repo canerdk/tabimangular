@@ -1,0 +1,83 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Yeni Talep</h4>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="requestForm" (ngSubmit)="onSubmit()">
+                            <div class="row">
+                                <input type="hidden" name="id" formControlName="Id">
+                                <div class="col-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input *ngIf="role === 'user'" matInput placeholder="Ad" name="Name" formControlName="Name">
+                                        <input *ngIf="role === 'admin'" matInput placeholder="Ad" name="Name" formControlName="Name" readonly>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input *ngIf="role === 'user'" matInput placeholder="Soyad" type="email" name="Surname" formControlName="Surname">
+                                        <input *ngIf="role === 'admin'" readonly matInput placeholder="Soyad" type="email" name="Surname" formControlName="Surname">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row mt-2 mb-2" *ngIf="role === 'user'">
+                                <div class="col-12">
+                                    <div class="example-full-width">
+                                        <label>Dosya: &nbsp;</label>
+                                        <input type="file" (change)="file($event)">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Kullanıcı Açıklama:</label>
+                                    <mat-form-field class="example-full-width">
+                                        <textarea *ngIf="role === 'user'" matInput name="Description" formControlName="Description"></textarea>
+                                        <textarea *ngIf="role === 'admin'" readonly matInput name="Description" formControlName="Description"></textarea>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="row mt-2 mb-2" *ngIf="role === 'admin'">
+                                <div class="col-12">
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Talep Onaylama</mat-label>
+                                        <mat-select name="Status" formControlName="Status">
+                                            <mat-option value="2" >Onaylandı </mat-option>
+                                            <mat-option value="3" >Onaylanmadı </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="role === 'admin'">
+                                <div class="col-12">
+                                    <label>Dosya Eki: </label>
+                                    <a (click)="downloadPdf(request.fileURL)" mat-icon-button color="accent">
+                                        &nbsp;{{fileName}} <mat-icon>assignment_returned</mat-icon>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="row" *ngIf="role === 'admin'">
+                                <div class="col-md-12">
+                                    <label>Yönetici Açıklaması:</label>
+                                    <mat-form-field class="example-full-width">
+                                        <textarea  matInput name="ManagerDesc" formControlName="ManagerDesc"></textarea>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <button *ngIf="role === 'user' && button === false" mat-raised-button class="btn btn-danger pull-right">Gönder</button>
+                            <div class="clearfix"></div>
+                        </form>
+                        <a *ngIf="role === 'user' && button === true" mat-raised-button (click)="Update()" class="btn btn-danger pull-right">Güncelle</a>
+                        <a *ngIf="role === 'admin'" mat-raised-button class="btn btn-primary pull-right" (click)="Update()">Gönder</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

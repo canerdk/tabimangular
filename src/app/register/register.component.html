@@ -1,0 +1,30 @@
+<mat-grid-list cols="1" rowHeight="2:1">
+    <mat-grid-tile>
+        <mat-card>
+            <h3 class="text-center">Kayıt Formu</h3>
+            <form class="example-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Ad</mat-label>
+                    <input matInput name="Name" formControlName="Name">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Soyad</mat-label>
+                    <input matInput name="Surname" formControlName="Surname">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Cep Telefonu</mat-label>
+                    <input matInput name="Phone" type="number" formControlName="Phone">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Email</mat-label>
+                    <input matInput name="Email" formControlName="Email">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Şifre</mat-label>
+                    <input matInput type="password" name="Password" formControlName="Password">
+                </mat-form-field>
+                <button mat-raised-button color="primary" type="submit">Gönder</button>
+            </form>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>

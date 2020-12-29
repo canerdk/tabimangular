@@ -1,0 +1,74 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Talepler</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive" id="table">
+                            <table class="table table-hover">
+                                <thead class="text-primary">
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    Ad
+                                </th>
+                                <th>
+                                    Soyad
+                                </th>
+                                <th>
+                                    Tarih
+                                </th>
+                                <th>
+                                    Durum
+                                </th>
+                                <th></th>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let r of request">
+                                    <td>
+                                        {{r.id}}
+                                    </td>
+                                    <td>
+                                        {{r.name}}
+                                    </td>
+                                    <td>
+                                        {{r.surname}}
+                                    </td>
+                                    <td>
+                                        {{r.date}}
+                                    </td>
+                                    <td>
+                                        <button *ngIf="r.status === 1" class="btn btn-warning">Bekliyor</button>
+                                        <button *ngIf="r.status === 2" class="btn btn-success">Onaylı</button>
+                                        <button *ngIf="r.status === 3" class="btn btn-danger">Onaysız</button>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <button mat-icon-button color="primary" (click)="edit(r)">
+                                                <mat-icon>edit</mat-icon>
+                                            </button>
+                                            <button mat-icon-button color="warn" (click)="delete(r)">
+                                                <mat-icon>delete</mat-icon>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <button *ngIf="role !== 'admin'" mat-raised-button color="primary" routerLink="/rdetail">Yeni
+                        Talep
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        <button *ngIf="role === 'admin'" class="pull-right"  mat-raised-button color="primary" (click)="download()">PDF İndir <mat-icon>file_copy</mat-icon></button>
+    </div>
+</div>
